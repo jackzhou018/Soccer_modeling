@@ -48,7 +48,11 @@ def main() -> None:
 
     with args.input.open(newline="", encoding="utf-8-sig") as infile:
         reader = csv.DictReader(infile)
-        output_columns = list(reader.fieldnames or []) + ["HomeElo", "AwayElo"]
+        output_columns = list(reader.fieldnames or []) + [
+            "HomeElo",
+            "AwayElo",
+            "EloDiff",
+        ]
 
         args.output.parent.mkdir(parents=True, exist_ok=True)
         with args.output.open("w", newline="", encoding="utf-8") as outfile:
@@ -63,6 +67,7 @@ def main() -> None:
 
                 row["HomeElo"] = f"{home_rating:.2f}"
                 row["AwayElo"] = f"{away_rating:.2f}"
+                row["EloDiff"] = f"{home_rating - away_rating:.2f}"
                 writer.writerow(row)
 
                 home_expected = expected_score(home_rating, away_rating)
