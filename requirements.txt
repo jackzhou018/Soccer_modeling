@@ -1,0 +1,8 @@
+# EPL data scripts use only the Python standard library.
+# These packages are needed for the notebook in models/regression-xgboost.ipynb.
+numpy
+pandas
+scikit-learn
+xgboost
+ipython
+jupyterlab
